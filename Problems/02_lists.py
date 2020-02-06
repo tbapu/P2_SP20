@@ -52,11 +52,13 @@ num_list.pop()
 top_ten = num_list[-10:]
 print(top_ten)
 
+
 # PROBLEM 4 (4pts)
 # Find the number which appears most often in num_list?
 
-most_num = [x for x in num_list if x[x] == x[x-1]]
-print(most_num)
+def most_frequent(list):
+    return max(list, key=list.count)
+print(most_frequent(num_list))
 
 # CHALLENGE PROBLEMS (2pts)
 # TOUGH PROBLEMS, BUT FEW POINTS
@@ -64,9 +66,6 @@ print(most_num)
 # Find the number of prime numbers in num_list?
 # Hint: One way is to just start removing the ones that aren't
 
+print(num_list)
 # Find the number of palindromes
 # Hint: This may be easier to do with strings
-
-
-
-

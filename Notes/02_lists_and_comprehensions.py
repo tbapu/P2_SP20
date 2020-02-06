@@ -65,7 +65,7 @@ print(my_names.count("Cam"))  # number of instances
 print(my_names.count("Mia"))
 my_names.append("Deb")
 print(my_names)
-del my_names[my_names.index("aaron")]  # delets "aaron
+del my_names[my_names.index("aaron")]  # deletes "aaron
 print(my_names)
 my_names.sort()  # orders in alphabetical order
 print(my_names)
