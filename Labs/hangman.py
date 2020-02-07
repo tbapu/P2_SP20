@@ -1,30 +1,21 @@
-'''
+"""
 
 Hangman Lab
 Tashi Bapu - 2020
 
-'''
+Welcome to Tashi's Hangman Game.
 
-# PSEUDOCODE
-# setup your game by doing the following
-# make a word list for your game
-# grab a random word from your list and store it as a variable
+    Rules:
+            - Guess with only 1 letter at a time.
+            - You have seven drawings of the hangman before you lose.
+            - GLHF!
 
-# in a loop, do the following
-# display the hangman using the gallows
-# display the used letters so the user knows what has been selected
-# display the length of the word to the user using blank spaces and used letters
-# prompt the user to guess a letter
-# don't allow the user to select the same letter twice
-# if the guess is incorrect increment incorrect_guesses by 1
-# if the incorrect_guesses is greater than 8, tell the user they lost and exit the program
-# if the user gets all the correct letters, tell the user they won
-
-# ask if they want to play again
+    Goal:
+            - Guess the hidden word.
+"""
 
 import random
 
-# Variables/Lists
 gallows = [
     '''
       +---+
@@ -89,109 +80,94 @@ gallows = [
           |
     =========
     '''
-]
-letters_used = []
-letters_wrong = 0
-word_list = ["CHILD", "JAMES", "TASHI"]
-word = word_list.pop(random.randrange(len(word_list)))
-playing = True
+]  # Hangman Pictures
 
-space1 = "_"
-space2 = "_"
-space3 = "_"
-space4 = "_"
-space5 = "_"
+def purple(skk): print("\033[95m {}\033[00m" .format(skk))  # Purple Colored Text
 
+def game_again():
+    print("_________________________________________________________________________________")
+    answer = input("\nWould You Like To Play Again? (Yes or No): ".lower())
+    if answer == "yes":
+        game()
 
-# Def
+def the_word():
+    word_list = ["LAME", "MINECRAFT", "MONKEY", "MONEY", "SOFT", "HARD", "WEAK", "EASY", "BEHIND"]
+    return random.choice(word_list)
 
 def game():
+    abcs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # Alphabet List/Check
+    word = the_word()
+    used_letters = []
+    whats_left = ""  # For Printing Later Guessed And Missing Letters (Later On)
+    pic = 0  # For Gallows Index
+    done = False
 
-    global space1, space2, space3, space4, space5, letters_wrong, letters_used
-
-    print(gallows[letters_wrong])
-
-    if len(word) == 5:
-        print(
-        "   ", space1, space2, space3, space4, space5
-        )
-
+    # Introduction Format
     print('''
-    Letters You Used: ''', letters_used)
+    Welcome to Tashi's Hangman Game.
+    
+    Rules:
+            - Guess with only 1 letter at a time.
+            - You have seven drawings of the hangman before you lose.
+            - GLHF!
+                                Game Start!                       
+_________________________________________________________________________________''')
+    print(gallows[pic])
+    print(" Used Letters: ", used_letters)
+    print("", len(word) * " _ ")
 
-    guess = input(str('''
-    Enter A Letter: '''))
+    while done is False:  # Main Game Loop
 
-    if word == "CHILD":
-        for letter in word:
-            if guess.upper() == letter:
-                if guess.upper() == "C":
-                    space1 = "C"
-                elif guess.upper() == "H":
-                    space2 = "H"
-                elif guess.upper() == "I":
-                    space3 = "I"
-                elif guess.upper() == "L":
-                    space4 = "L"
-                elif guess.upper() == "D":
-                    space5 = "D"
-                else:
-                    letters_wrong += 1
+        if done is False:
+            guess = input(" Guess A Letter: ").upper()
 
-
-    elif word == "JAMES":
-        for letter in word:
-            if guess.upper() == letter:
-                if guess.upper() == "J":
-                    space1 = "J"
-                elif guess.upper() == "A":
-                    space2 = "A"
-                elif guess.upper() == "M":
-                    space3 = "M"
-                elif guess.upper() == "E":
-                    space4 = "E"
-                elif guess.upper() == "S":
-                    space5 = "S"
-                else:
-                    letters_wrong += 1
-
-    elif word == "TASHI":
-        for letter in word:
-            if guess.upper() == letter:
-                if guess.upper() == "T":
-                    space1 = "T"
-                elif guess.upper() == "A":
-                    space2 = "A"
-                elif guess.upper() == "S":
-                    space3 = "S"
-                elif guess.upper() == "H":
-                    space4 = "H"
-                elif guess.upper() == "I":
-                    space5 = "I"
-                else:
-                    letters_wrong += 1
-    if letters_used.count(guess.upper()) == 0 and len(guess) == 1 and chr(65) <= guess >= chr(65 + 26):
-        letters_used.append(guess.upper())
-    elif letters_used.count(guess.upper()) is not 0:
         print('''
-    You have already used that letter. Still Wrong. Guess Again.''')
-    elif len(guess) is not 1:
-        print('''
-    Please Enter ONE letter at a time. Still Wrong. Guess Again.''')
-    elif chr(65) > guess.upper() < chr(65 + 26):
-        print('''
-    Please Enter a LETTER. Still Wrong. Guess Again.''')
+_________________________________________________________________________________''')
 
+        print("\n", gallows[pic])
 
+        if len(guess) == 1:  # Checking If Guess Is Only 1 Character
 
-print('''
-    Welcome to HangMan!
-    Guess the 5 letter word to win! 
-    But Make Sure Not To Complete
-    The HangMan.
-    If that happens... YOU LOSE!
-    Good Luck!
-''')
+            # Incorrect Enters
+            if guess not in abcs:  # Checking if Guess Is A Letter
+                purple("You Have Not Entered A Letter.")
 
-while playing is True:
-    game()
+            elif guess in used_letters:  # Checking If Guess Is A Repeated Letter
+                purple("You Have Already Entered That Letter.")
+
+            # Correct Enters
+            elif guess in word:  # Checking If Guess Is A Letter In Word
+                purple("Good Job, That Letter Is In The Word!")
+                used_letters.append(guess)
+
+            elif guess in abcs and guess not in word:  # Checking If Guess Is Wrong
+                purple("Nice Try, But That Letter Is Not In The Word.")
+                used_letters.append(guess)
+                pic += 1  # Changing Hangman Picture
+
+        else:
+            purple("You May Only Enter One Character At A Time.")
+
+        print(" Used Letters: ", used_letters)
+
+        for letter in word:  # Prints (Missing) Letter In Correct Order
+            if letter in used_letters:
+                whats_left += letter
+            else:
+                whats_left += " _ "
+
+        print(whats_left)
+
+        if whats_left == word:  # Checking If The Word Has Been Guessed
+            purple("Amazing Job, You Have Guessed The Correct Word!")
+            done = True
+
+        elif gallows[pic] == gallows[6]:  # Checking Last Try To Guess
+            print(gallows[pic])
+            purple("The Hangman Is Completed! You Lose!")
+            done = True
+
+        whats_left = ""  # Resets The Printed (Missing) Letters (IMPORTANT!)
+
+game()  # Starts Game
+game_again()  # Asking User If They Want To Play Again
