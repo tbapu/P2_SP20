@@ -87,27 +87,40 @@ def linear_search(key, list):
     else:
         print(key, "not found.")
         return False
-print(linear_search("Edgar the Grim", villains))
+print(linear_search("EDGAR THE GRIM", villains))
 
 
 # Binary Search
+villains.sort()  # must be sorted
+
+key = "THEODORA THE WICKED"
+
+lower_bound = 0
+upper_bound = len(villains) - 1  # Length in not in index
+found = False
+while lower_bound <= upper_bound and not found:
+    middle_pos = (upper_bound + lower_bound) // 2  # chops off decimals
+    if villains[middle_pos] < key:
+        lower_bound = middle_pos + 1  # middle_pos includes to middle point
+    elif villains[middle_pos] > key:
+        upper_bound = middle_pos - 1
+    else:
+        find = True
+
+if found:
+    print(key, "found at position", middle_pos)
+else:
+    print(key, "was not found")
 
 
+# GIFTED FUNCTION
+# returns a list of words in each line
 
+import re  # regular expression
+def spilt_line(line):
+    return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+text = "Hello, this is Aaron's phone!"
+print(spilt_line(text))  # ['Hello', 'this', 'is', "Aaron's", 'phone']
 
 
