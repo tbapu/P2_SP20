@@ -123,5 +123,3 @@ def spilt_line(line):
 text = "Hello, this is Aaron's phone!"
 print(spilt_line(text))  # ['Hello', 'this', 'is', "Aaron's", 'phone']
 
-
-
