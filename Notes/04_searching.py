@@ -1,6 +1,6 @@
 
 
-
+'''
 
 # Notes - 2/10/2020
 
@@ -112,7 +112,7 @@ if found:
 else:
     print(key, "was not found")
 
-
+'''
 # GIFTED FUNCTION
 # returns a list of words in each line
 
@@ -122,4 +122,28 @@ def spilt_line(line):
 
 text = "Hello, this is Aaron's phone!"
 print(spilt_line(text))  # ['Hello', 'this', 'is', "Aaron's", 'phone']
+
+
+file = open("resources/alice_in_wonderland")
+
+for line in file:
+    line = line.strip().upper()
+    words = spilt_line(line)
+    for word in words:
+        print(word)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
