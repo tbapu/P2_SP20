@@ -105,7 +105,7 @@ while lower_bound <= upper_bound and not found:
     elif villains[middle_pos] > key:
         upper_bound = middle_pos - 1
     else:
-        find = True
+        found = True
 
 if found:
     print(key, "found at position", middle_pos)
