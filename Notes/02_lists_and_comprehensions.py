@@ -2,9 +2,8 @@
 
 
 
-# Notes - 1/30/2020 + 1/31/2020
+# Notes - Lists
 
-# LISTS
 import random
 
 my_names = ["Abe", "Bev", "Cam", "Dan", "Eve", "Flo"]
