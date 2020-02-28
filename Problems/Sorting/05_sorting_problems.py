@@ -7,11 +7,17 @@ For all answers, show your work
 Use combinations of sorting, list comprehensions, filtering or other techniques to get the answers.
 '''
 
-
+from NBAStats import data
 #1  Pop off the first item in the list and print it.  It contains the column headers. (1pt)
+
+print(data.pop(0))
 
 #2  Print the names of the top ten highest scoring single seasons in NBA history?
 # You should use the PTS (points) column to sort the data. (4pts)
+
+my_list = data.sort(lambda a: )
+
+for name in data:
 
 #3  How many career points did Kobe Bryant have? Add up all of his seasons. (4pts)
 
