@@ -75,3 +75,10 @@ hello("Star", "afternoon")
 hello("Mia")
 hello("James", time_of_day="evening")
 
+
+# Lambda functions (anonymous function on a single line)
+
+double_me = lambda x: x * 2
+
+# double_me is a function that returns the value x * 2
+print(double_me(5))
