@@ -60,7 +60,7 @@ pos = 0
 my_list = []
 for x in range(1, len(data)):
     pos += 1
-    my_list.append([data[x][26], pos])
+    my_list.append([data[x][25], pos])
 
 print(data[sortz(my_list)[-1][1]][2])
 
@@ -73,19 +73,35 @@ pos = 0
 my_list = []
 for x in range(1, len(data)):
     pos += 1
-    my_list.append([data[x][5], pos])
+    my_list.append([data[x][4], pos])
 
 print(data[sortz(my_list)[-1][1]][2])
 
 #7  Big challenge, few points.  Of the 100 highest scoring single seasons in NBA history, which player has the
 # worst free throw percentage?  Which had the best? (2pts)
 
-
 pos = 0
 my_list = []
+my_list2 = []
+my_list3 = []
+for x in range(1, len(data)):
+    pos += 1
+    my_list.append([data[x][-1], pos])
+
+for x in range(-100, 0):
+    my_list2.append(data[sortz(my_list)[x][1]][2])
+
 for x in range(1, len(data)):
     pos += 1
     my_list.append([data[x][-10], pos])
 
-print("The Person With The Lowest Free Throw Percentage Is", data[sortz(my_list)[0][1]][2])
-print("The Person With The Highest Free Throw Percentage Is", data[sortz(my_list)[-1][1]][2])
+
+pos = 0
+
+for x in range(1, len(data)):
+    pos += 1
+    if my_list2.__contains__(data[x][2]):
+        my_list3.append([data[x][-10], data[x][2]])
+
+print("The Person With The Lowest Free Throw Percentage Is", sortz(my_list3)[1][1])
+print("The Person With The Highest Free Throw Percentage Is", sortz(my_list3)[-4][1])
