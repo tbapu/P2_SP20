@@ -1,67 +1,55 @@
+# Exceptions (use me sparingly please)
 
-
-
-
-# Notes - Exceptions (use me sparingly)
-# Exception - a condition that results in abnormal pregrom flow
-# Exception handling - What we actively do to accommodate exceptions
+# Exception - a condition that results in abnormal program flow
+# Exception handling - what we actively do to accommodate exceptions
 # Throw/Raise - Exception condition occurs
 # Catch - Code handles thrown exception
-# Unhandled Exception - Thrown not caught. Program killer
+# Unhandled exception - Thrown not caught.  Program killer.
 
-
-
-
-# Divide By Zero (ZeroDivisionError)
 x = 2
 y = 0
+
+# Divide by Zero (ZeroDivisionError)
 try:
     print(x / y)
 except:
-    print("Invalid Operation")
+    print("Infinity")
 
-# Conversion Error (Value Error)
+
+# Conversion Error (ValueError)
 try:
     int("T")
 except:
-    print("Number Was Not Valid")
+    print("Number was not valid")
 
-# Handle With a Loop
+
+# handle with a loop
 done = False
+
 while not done:
     try:
         user_input = int(input("Enter an integer: "))
         done = True
     except:
-        print("Number is not Valid")
+        print("Number is not valid")
+
 
 # File Opening (IOError, FileNotFoundError)
 try:
-    file = open("YaBoi.txt")
+    file = open("AliceInWonderland.txt")
 except:
-    print("Could Not Open File")
+    print("Could not open file")
 
-# Use Built in Error types for python to check what error ocurred
+
+# Use built in error types for python to check what error occurred.
 try:
-    # my_file = open("Yagirl.txt")
+    # my_file = open("myfile.txt")
     # int("Hello")
     print(1 / 0)
 except FileNotFoundError:
     print("File not found")
 except ValueError as e:
-    print("Invalid Conversion")
+    print("Invalid conversion")
     print(e)
 except ZeroDivisionError as e:
-    print("Error", e)
-
-
-
-
-
-
-
-
-
-
-
-
+    print("Error:", e)
